@@ -1,9 +1,4 @@
-/*
- * servicio.h
- *
- *  Created on: 13 may. 2022
- *      Author: micar
- */
+
 
 #ifndef SERVICIO_H_
 #define SERVICIO_H_
@@ -19,8 +14,8 @@ typedef struct{
 
 /**
  * \brief muestra los servicios
- * \param servicios
- * \param tam
+ * \param servicios array del tipo eServicio
+ * \param tam tamanio del vector de servicios
  *\return Retorna 1 si salio bien o 0 si salio mal
  */
 int mostrarServicios(eServicio servicios[], int tam);
@@ -28,9 +23,11 @@ int mostrarServicios(eServicio servicios[], int tam);
 
 
 /**
- * \brief
- * \param
- * \param
+ * \brief carga el nombre del servicio
+ \param servicios array del tipo eServicio
+ * \param tamC tamanio del vector de servicios
+ * \param  idServicios
+ * \param descripcion
  *\return Retorna 1 si salio bien o 0 si salio mal
  */
 

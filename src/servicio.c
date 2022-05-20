@@ -15,7 +15,7 @@ int mostrarServicios(eServicio servicios[], int tam) {
 
 	if (servicios != NULL && tam > 0) {
 
-		printf("***Servicios***\n");
+		printf("Servicios:\n");
 
 		printf("---------------------------------------------------\n");
 

@@ -1,9 +1,3 @@
-/*
- * utn.h
- *
- *  Created on: 13 may. 2022
- *      Author: micar
- */
 
 #ifndef UTN_H_
 #define UTN_H_
@@ -13,7 +7,7 @@
 /**
  * \brief pide una cadena y la valida
  * \param cadena
- * \param tam tamaño del vector cadena
+ * \param tam tamanio del vector cadena
  * \param mensaje puntero a char
  *\return Retorna 1 si salio bien o 0 si salio mal
  */

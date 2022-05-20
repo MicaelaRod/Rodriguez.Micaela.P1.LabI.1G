@@ -1,9 +1,3 @@
-/*
- * fecha.h
- *
- *  Created on: 13 may. 2022
- *      Author: micar
- */
 
 #ifndef FECHA_H_
 #define FECHA_H_

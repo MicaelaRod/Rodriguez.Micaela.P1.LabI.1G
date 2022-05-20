@@ -22,7 +22,8 @@ int menu() {
 	printf("7.Listar servicios\n");
 	printf("8.Alta Trabajo\n");
 	printf("9.Listar Trabajos\n");
-	printf("10.Salir\n");
+	printf("10.Informes\n");
+	printf("11.Salir\n");
 	printf("Ingrese opcion: ");
 	scanf("%d", &opcion);
 
@@ -49,15 +50,13 @@ int modificar(eMoto lista[], int tam,eTipo tipos[],int tamT,eColor colores[],int
 	int auxInt;
 	int auxInt2;
 
-	if (lista != NULL && tam > 0) {
+	if (lista != NULL && tam > 0 && tipos != NULL && tamT > 0 && colores != NULL && tamC > 0) {
 
 		printf("Modificacion:\n");
 
 		mostrarMuchos(lista,tam,tipos,tamT,colores,tamC);
 
-		printf("Ingrese ID a modificar");
-
-		scanf("%d", &id);
+		id = getInt("Ingrese Id Moto: ", "ERROR.Ingrese Id Moto: ",10010, 1000);
 
 		indice = buscarID(lista, tam, id);
 
@@ -66,7 +65,7 @@ int modificar(eMoto lista[], int tam,eTipo tipos[],int tamT,eColor colores[],int
 		} else {
 			mostrarUno(lista[indice],tipos,tamT,colores,tamC);
 			printf("\n");
-			printf("¿Confirma modificacion? \n");
+			printf("Confirma modificacion? \n");
 			fflush(stdin);
 			scanf("%c",&confirma);
 
@@ -77,7 +76,7 @@ int modificar(eMoto lista[], int tam,eTipo tipos[],int tamT,eColor colores[],int
 			case 1:
 				//modificar color
 				   mostrarColores(colores,tamC);
-					auxInt2 = getInt("Ingrese id Color","Error, reingrese id", 10004, 10000);
+				   auxInt2 = getInt("Ingrese id Color","Error, reingrese id", 10004, 10000);
 
 					lista[indice].idColor = auxInt2;
 
@@ -115,15 +114,13 @@ int baja(eMoto lista[], int tam,eTipo tipos[],int tamT,eColor colores[],int tamC
 	int id;
 	char confirma;
 
-	if (lista != NULL && tam > 0 && tipos != NULL && tamT > 0) {
+	if (lista != NULL && tam > 0 && tipos != NULL && tamT > 0 && colores != NULL && tamC > 0) {
 
 		printf("Baja:\n");
 
 		mostrarMuchos(lista,tam,tipos,tamT,colores,tamC);
 
-		printf("Ingrese ID a hacer la baja: ");
-
-		scanf("%d", &id);
+		id = getInt("Ingrese Id Moto: ", "ERROR.Ingrese Id Moto: ",10010, 1000);
 
 		indice = buscarID(lista, tam, id);
 
@@ -132,7 +129,7 @@ int baja(eMoto lista[], int tam,eTipo tipos[],int tamT,eColor colores[],int tamC
 		} else {
 			mostrarUno(lista[indice],tipos,tamT,colores,tamC);
 			printf("\n");
-			printf("¿Confirma baja? ");
+			printf("Confirma baja? ");
 			fflush(stdin);
 			scanf("%c", &confirma);
 			if (confirma == 's' || confirma == 'S') {
@@ -173,7 +170,7 @@ int mostrarMuchos(eMoto lista[],int tam,eTipo tipos[],int tamT,eColor colores[],
 	int todoOk = 0;
 	int flag = 1;
 
-	if (lista != NULL && tam > 0) {
+	if (lista != NULL && tam > 0 && tipos != NULL && tamT > 0 && colores != NULL && tamC > 0) {
 
 		printf("Listado de Motocicletas:\n");
 		printf(
@@ -193,7 +190,7 @@ int mostrarMuchos(eMoto lista[],int tam,eTipo tipos[],int tamT,eColor colores[],
 		}
 
 		if(flag){
-			printf("No hay mascotas para mostrar\n");
+			printf("No hay motocicletas para mostrar\n");
 		}
 
 		todoOk = 1;
@@ -227,7 +224,7 @@ int alta(eMoto lista[], int tam,eTipo tipos[],int tamT, int* id,eColor colores[]
 	int indice;
 	eMoto aux;
 
-	if (lista != NULL && tam > 0 && id != NULL && tipos != NULL && tamT > 0) {
+	if (lista != NULL && tam > 0 && id != NULL && tipos != NULL && tamT > 0 && colores != NULL && tamC > 0) {
 
 		indice = buscarLibre(lista,tam);
 
@@ -253,7 +250,7 @@ int alta(eMoto lista[], int tam,eTipo tipos[],int tamT, int* id,eColor colores[]
 			printf("Ingrese la cilindrada\n");
 			scanf("%d", &aux.cilindrada);
 
-while(aux.cilindrada != 50 &&aux.cilindrada != 125 &&aux.cilindrada != 500 &&aux.cilindrada != 600 &&aux.cilindrada != 750){
+while(aux.cilindrada != 50 && aux.cilindrada != 125 && aux.cilindrada != 500 &&aux.cilindrada != 600 && aux.cilindrada != 750){
 	printf("Error. Reingrese la cilindrada\n");
 	scanf("%d",&aux.cilindrada);
 }
@@ -308,40 +305,55 @@ int inicializar(eMoto lista[], int tam) {
 }
 
 
-int ordenarId(eMoto lista[], int tam) {
-	int todoOk = 0;
-	eMoto aux;
 
-	if (lista != NULL && tam > 0) {
+int ordenarxIdTipo(eMoto lista[], int tam, eTipo tipos[], int tamT)
+{
 
-		for (int i = 0; i < tam - 1; i++) {
-			for (int j = i + 1; j < tam; j++) {
+   int todoOk = 0;
+   eMoto aux;
+   char tipoI[20];
+   char tipoJ[20];
 
-				if ( lista [i].id > lista[j].id) {
-					     aux = lista[i];
-					lista[i] = lista[j];
-					lista[j] = aux;
-				}
-			}
-		}
+    if(lista != NULL && tam > 0 && tipos != NULL && tamT > 0){
 
-		printf("Ordenamiento exitoso!!\n");
+    for(int i=0;i<tam-1;i++) {
+        for(int j=i+1;j<tam;j++){
 
-		todoOk = 1;
-	}
+        	cargarDescripcionT(tipos,tamT,lista[i].idTipo,tipoI);
+        	cargarDescripcionT(tipos,tamT,lista[j].idTipo,tipoJ);
 
-	return todoOk;
+            if(strcmp(tipoI,tipoJ)>0)
+            {
+                aux = lista[i];
+                lista[i] = lista[j];
+                lista[j] = aux;
+            }
+            else
+            {
+                 if((strcmp(tipoI,tipoJ)==0)&&(lista[i].id > lista[j].id))
+                {
+                    aux = lista[i];
+                lista[i] = lista[j];
+                lista[j] = aux;
+                }
+            }
+        }
+    }
+    todoOk = 1;
+    }
+
+    return todoOk;
 }
 
 
 
-int cargarMarca(eMoto lista[],int tam,int idMascota,char marca[]){
+int cargarMarca(eMoto lista[],int tam,int id,char marca[]){
 	int todoOk =0;
 
 	if(lista != NULL && tam>0 && marca != NULL){
 
 		for(int i=0;i<tam;i++){
-			if(lista[i].id == idMascota){
+			if(lista[i].id == id){
 				strcpy(marca,lista[i].marca);
 				break;
 			}
@@ -352,5 +364,4 @@ int cargarMarca(eMoto lista[],int tam,int idMascota,char marca[]){
 
 	return todoOk;
 }
-
 

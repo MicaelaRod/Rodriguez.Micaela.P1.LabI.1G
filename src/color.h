@@ -11,9 +11,9 @@ typedef struct{
 
 
 /**
- * \brief le pone la descripcion al id
+ * \brief le pone el nombre del color al id
  * \param colores. Array a mostrar
- * \param tam tamaño del array
+ * \param tam tamanio del array
  * \param idColor
  *
  *\return Retorna 1 si salio bien o 0 si salio mal
@@ -23,7 +23,7 @@ int cargarDescC(eColor colores[],int tam, int idColor, char descripcion[]);
 /**
  * \brief Muestra la lista de colores
  * \param colores. Array a mostrar
- * \param tamaño del array
+ * \param tamanioo del array
  *\return Retorna 1 si salio bien o 0 si salio mal
  */
 int mostrarColores(eColor colores[], int tam);

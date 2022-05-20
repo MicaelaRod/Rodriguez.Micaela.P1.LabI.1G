@@ -43,8 +43,7 @@ int hardcodear(eMoto lista[],int tam,int cant,int* pId){
 			lista[i].idColor = idColor[i];
 			lista[i].cilindrada = cilindradas[i];
 			lista[i].puntaje = puntajes[i];
-
-			lista[i].isEmpty = 0;
+            lista[i].isEmpty = 0;
 			contador++;
 		}
 	}

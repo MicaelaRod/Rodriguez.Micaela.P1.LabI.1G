@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,6 +7,7 @@
 #include "servicio.h"
 #include "trabajo.h"
 #include "color.h"
+#include "informes.h"
 #define TAM 10
 #define TAMT 4
 #define TAMS 4
@@ -57,8 +57,9 @@ int main(void) {
 
 	inicializarTra(trabajos,TAMTRA);
 
+    hardcodear(lista,TAM,7,&nextId);
 
-	hardcodear(lista,TAM,7,&nextId);
+
 
 	do {
 		switch (menu()) {
@@ -85,17 +86,12 @@ int main(void) {
 		case 4:
 
 			if (flag1) {
+				ordenarxIdTipo(lista, TAM, tipos, TAMT);
 				mostrarMuchos(lista, TAM, tipos, TAMT,colores,TAMC);
 			} else {
 				printf("Primero deberia ingresar la opcion 1\n");
 			}
-			/*
-			if (flag1) {
-				//ordenar(lista,TAM);
-			} else {
-				printf("Primero deberia ingresar la opcion 1\n");
-			}
-			*/
+
 			break;
 		case 5:
 
@@ -129,9 +125,62 @@ int main(void) {
 			}
 
 			break;
-		case 10:
 
-			printf("¿Esta seguro que quiere salir?\n");
+		case 10:
+			//informes
+			switch(menuInforme()){
+			case 1:
+				//Mostrar las motos del color seleccionado por el usuario
+				mostrarMotosColor(lista, TAM, tipos, TAMT,colores,TAMC); //LISTO
+				break;
+			case 2:
+				//Informar el promedio de puntaje de un tipo seleccionado por el usuario.
+				mostrarPromedioPuntajeTipo(lista, TAM, tipos, TAMT);
+				break;
+			case 3:
+				//muestra la o las motos con la mayor cilindrada
+				mostrarMotodeMayorCilindrada(lista, TAM); //LISTO
+				break;
+			case 4:
+				//lista de motos separadas por tipos
+				mostrarMotosSeparadasxTipo(lista, TAM, tipos, TAMT,colores,TAMC); //LISTO
+				break;
+			case 5:
+				//Elegir un color y un tipo y mostrar la cantidad de motos de ese tipo y color
+				contarMotosXUnColorYTipo(lista, TAM, tipos, TAMT,colores,TAMC); //LISTO
+
+				break;
+			case 6:
+				//mostrar el o los colores con mas cantidad de motos
+				colorConMasMotos(lista, TAM,colores,TAMC); //LISTO
+
+				break;
+			case 7:
+				// pide moto muestra los trabajo de una moto seleccionada
+				mostrarTrabajosDeUnaMoto(trabajos,TAMTRA,servicios,TAMS,lista,TAM,colores,TAMC,tipos,TAMT);
+				break;
+			case 8:
+				//Pedir una moto e informar la suma de los importes de los servicios que se le hicieron
+
+				sumarImportesdeServicios(trabajos,TAMTRA,servicios,TAMS,lista,TAM,tipos,TAMT,colores,TAMC);
+
+				break;
+			case 9:
+				//Pedir un servicio y mostrar las motos a las que se les realizo ese servicio y la fecha.
+				mostrarFechaYMotoXServicio(trabajos,TAMTRA,servicios,TAMS,lista,TAM,tipos,TAMT,colores,TAMC);
+				break;
+			case 10:
+				//Pedir una fecha y mostrar todos los servicios realizados en la misma.
+				mostrarServiciosXFecha(trabajos,TAMTRA,servicios,TAMS);
+				break;
+
+			default:
+				printf("Opcion invalida\n");
+			}
+			break;
+		case 11:
+
+			printf("Esta seguro que quiere salir?\n");
 			fflush(stdin);
 			scanf("%c", &salir);
 

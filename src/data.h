@@ -1,9 +1,3 @@
-/*
- * data.h
- *
- *  Created on: 13 may. 2022
- *      Author: micar
- */
 
 #ifndef DATA_H_
 #define DATA_H_
@@ -17,9 +11,9 @@
 
 
 /**
- * \brief hardcodea arrays
+ * \brief hardcodea arrays del tipo eMoto
  * \param lista array del tipo eMoto
- * \param tam tamaño del array lista
+ * \param tam tamanio del array lista
  * \param cant cantidad a hardcodear
  * \param pId puntero int
  *\return Retorna 1 si salio bien o 0 si salio mal

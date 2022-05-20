@@ -48,7 +48,7 @@ int altaTrabajo(eTrabajo trabajos[],int tamT,eMoto lista[], int tam,eTipo tipos[
 	int indice;
 	eTrabajo aux;
 
-	if (lista != NULL && tam > 0 && idTrabajo != NULL && trabajos != NULL && tamT > 0 && tipos != NULL && tamT >0 && servicios != NULL && tamS > 0) {
+	if (lista != NULL && tam > 0 && idTrabajo != NULL && trabajos != NULL && tamT > 0 && tipos != NULL && tamT >0 && servicios != NULL && tamS > 0 && colores != NULL && tamC > 0) {
 
 		indice = buscarLibreTra(trabajos,tamT);
 
